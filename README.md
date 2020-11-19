@@ -8,7 +8,7 @@ Tasks:
 
 1. DOM manipulation: 
     - add movements(transactions) to the DOM  
-    - try it with all accounts 
+    - try it with all accounts = [account1,...etc]
 
 2. Conversion functions (example USD to EUR)
     Let's try to do it many ways.
