@@ -6,7 +6,9 @@ Thanks for looking!
 
 test:
 
-1. DOM manipulation 
+1. DOM manipulation: 
+    - add movements(transactions) to the DOM  
+    - try it with all accounts 
 
 2. Conversion functions (example USD to EUR)
     Let's try to do it many ways.
