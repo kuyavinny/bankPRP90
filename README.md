@@ -9,6 +9,8 @@ test:
 1. DOM manipulation 
 
 2. Conversion functions (example USD to EUR)
+    Let's try to do it many ways.
+    - regular functions(for loops etc)
     - call back function
     - es6+
     - arrow Functions
@@ -27,3 +29,5 @@ test:
 5. Create array withdrawals(movements that are less than 0)
 
 6. Create array totals (sum all movements)
+
+7. We will add more as we advance...
