@@ -1,8 +1,7 @@
-# bankPRP90
+# JS-projects
 
-This is a project between Mike, Mauricio and Glenn.
-This project is for learning how to work together with a team in preparation for our Precourse and HR SEI.
-Thanks for looking!
+<!-- project 38: -->
+# bankPRP90
 
 Tasks:
 
@@ -33,4 +32,10 @@ Tasks:
 
 6. Create array totals (sum all movements)
 
-7. We will add more as we advance...
+7. Change Total, deposits, withdrawal, etc to USD
+
+8. Query accounts objects in accounts array.
+
+9. Use transfer money to take amount from account.
+
+10. Use request loan to add amount to account.
