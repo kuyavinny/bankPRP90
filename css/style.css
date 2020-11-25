@@ -88,7 +88,7 @@ nav {
   position: relative;
   max-width: 100rem;
   margin: 4rem auto;
-  display: grid;
+  display: none;
   grid-template-columns: 4fr 3fr;
   grid-template-rows: auto repeat(3, 15rem) auto;
   gap: 2rem;
@@ -96,7 +96,7 @@ nav {
   /* NOTE This creates the fade in/out anumation */
   /* opacity: 0; */
   opacity: 1;
-  transition: all 1s;
+  transition: all 2s;
 }
 
 .balance {
