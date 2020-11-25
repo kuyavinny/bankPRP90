@@ -9,7 +9,15 @@
 // Data
 const account1 = {
   owner: 'Michael Elliott',
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  movements: [
+    {amount: 200, date: 927923563042},
+    {amount: 450, date: 622250976809},
+    {amount: -400, date: 1551287510555},
+    {amount: 3000, date: 491146958534},
+    {amount: -650, date: 167202734658},
+    {amount: -130, date: 124764445521},
+    {amount: 70, date: 1170976427420},
+    {amount: 1300, date: 1206456104396}],
   interestRate: 1.2, // %
   pin: 1111,
 };
@@ -69,6 +77,7 @@ const inputLoanAmount = query('.form__input--loan-amount');
 const inputCloseUsername = query('.form__input--user');
 const inputClosePin = query('.form__input--pin');
 
+const movementsBlock = query('.movements');
 const movementsDeposit = query('.movements__type--deposit');
 const movementsWithdrawal = query('.movements__type--withdrawal')
 const movementsDepositValue = query('.movements__value--deposit');
@@ -118,25 +127,38 @@ btnLogin.addEventListener('click', e => {
     let withdrawals = [];
     let withdrawalsValue = 0;
 
-    currentAccount.movements.forEach((item) => {
-      if (item > 0) {
-        deposits.push(item);
-      } else if (item < 0) {
-        withdrawals.push(item);
-      }
-    })
-    if (deposits.length) { depositsValue = Balance.add(deposits) };
-    if (withdrawals.length) { withdrawalsValue = Balance.add(withdrawals) };
+    for (let i = currentAccount.movements.length - 1; i >= 0; i--) {
+      let transaction = currentAccount.movements[i];
+      let amount = transaction.amount;
+      let date = new Date(transaction.date).toUTCString();
 
-    movementsDeposit.innerHTML = deposits.length + ' DEPOSIT';
-    movementsWithdrawal.innerHTML = withdrawals.length + ' WITHDRAWAL';
-    movementsDepositValue.innerHTML = depositsValue + '€';
-    movementsWithdrawalValue.innerHTML = withdrawalsValue + '€';
+      if (transaction.amount > 0) {
+
+        movementsBlock.innerHTML +=
+        ` <div class="movements__row">
+          <div class="movements__type movements__type--deposit"> Transaction #${i+1}\ndeposit </div>
+          <div class="movements__date"> ${date} </div>
+          <div class="movements__value movements__value--deposit"> ${amount}€ </div>
+          </div>
+        `;
+
+      }
+      if (transaction.amount < 0) {
+        movementsBlock.innerHTML +=
+        ` <div class="movements__row">
+          <div class="movements__type movements__type--withdrawal"> Transaction #${i+1}\nwithdrawal </div>
+          <div class="movements__date"> ${date} </div>
+          <div class="movements__value movements__value--withdrawal"> ${amount}€ </div>
+          </div>
+        `;
+      }
+
+    }
 
     labelSumIn.innerHTML = depositsValue + '€';
     labelSumOut.innerHTML = withdrawalsValue + '€';
     labelSumInterest.innerHTML = (depositsValue * (currentAccount.interestRate / 100)) + '€';
-    debugger
 
   })
+
 })

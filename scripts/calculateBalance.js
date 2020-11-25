@@ -3,7 +3,14 @@ function displayBalance (classEL, arr) {
 }
 
 function calculateBalance (arr) {
-  return arr.reduce((acc, curr) => acc + curr);
+  let amounts = [];
+
+  arr.forEach((item) => {
+    amounts.push(item.amount)
+
+  })
+
+  return amounts.reduce((acc, curr) => acc + curr);
 }
 
 function sum (arr) {
