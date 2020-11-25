@@ -77,3 +77,17 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+btnLogin.addEventListener('click', e => {
+  e.preventDefault();
+
+  import('/scripts/login.js').then((Login) => {
+    let usernames = Login.generateUsernamesAndPins(accounts);
+    let loggedIn = Login.checkLogin(usernames, inputLoginUsername.value, inputLoginPin.value)
+
+    if (loggedIn) {
+      containerApp.style.display = 'grid';
+    }
+  })
+
+})
