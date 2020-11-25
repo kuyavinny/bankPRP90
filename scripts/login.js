@@ -11,7 +11,8 @@ function generateUsernamesAndPins (arr) {
 
     pin = account.pin.toString();
 
-    usernames.push({'username': username, 'pin': pin});
+    usernames.push({'username': username, 'pin': pin, 'accountID': i});
+
   }
 
   return usernames;
@@ -23,10 +24,10 @@ function checkLogin (accounts, name, pin) {
 
     if (account.username === name && account.pin === pin) {
 
-      return true;
+      return account;
     }
-
-  } return false;
+  }
+  return null;
 }
 
 export {generateUsernamesAndPins, checkLogin};

@@ -4,6 +4,8 @@
 /////////////////////////////////////////////////
 // BANKIST APP
 
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
 // Data
 const account1 = {
   owner: 'Michael Elliott',
@@ -35,7 +37,10 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
 // Elements
+
 function query(classEl) { // input: class element. ex. '.welcome'
   return document.querySelector(classEl)
 }
@@ -64,6 +69,11 @@ const inputLoanAmount = query('.form__input--loan-amount');
 const inputCloseUsername = query('.form__input--user');
 const inputClosePin = query('.form__input--pin');
 
+const movementsDeposit = query('.movements__type--deposit');
+const movementsWithdrawal = query('.movements__type--withdrawal')
+const movementsDepositValue = query('.movements__value--deposit');
+const movementsWithdrawalValue = query('.movements__value--withdrawal');
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -77,17 +87,56 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// Operations
+let currentAccount = {};
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// Login Button
 
 btnLogin.addEventListener('click', e => {
   e.preventDefault();
 
+  // log in user
   import('/scripts/login.js').then((Login) => {
     let usernames = Login.generateUsernamesAndPins(accounts);
     let loggedIn = Login.checkLogin(usernames, inputLoginUsername.value, inputLoginPin.value)
 
     if (loggedIn) {
       containerApp.style.display = 'grid';
+      currentAccount = accounts[loggedIn.accountID];
     }
   })
 
+  // calculate balance
+  import('/scripts/calculateBalance.js').then((Balance) => {
+    labelBalance.innerHTML = Balance.calculateBalance(currentAccount.movements) + '€';
+
+    let deposits = [];
+    let depositsValue = 0;
+    let withdrawals = [];
+    let withdrawalsValue = 0;
+
+    currentAccount.movements.forEach((item) => {
+      if (item > 0) {
+        deposits.push(item);
+      } else if (item < 0) {
+        withdrawals.push(item);
+      }
+    })
+    if (deposits.length) { depositsValue = Balance.add(deposits) };
+    if (withdrawals.length) { withdrawalsValue = Balance.add(withdrawals) };
+
+    movementsDeposit.innerHTML = deposits.length + ' DEPOSIT';
+    movementsWithdrawal.innerHTML = withdrawals.length + ' WITHDRAWAL';
+    movementsDepositValue.innerHTML = depositsValue + '€';
+    movementsWithdrawalValue.innerHTML = withdrawalsValue + '€';
+
+    labelSumIn.innerHTML = depositsValue + '€';
+    labelSumOut.innerHTML = withdrawalsValue + '€';
+    labelSumInterest.innerHTML = (depositsValue * (currentAccount.interestRate / 100)) + '€';
+    debugger
+
+  })
 })
