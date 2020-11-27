@@ -54,11 +54,25 @@ AppUI.btnTransfer.addEventListener('click', e => {
 
   import('./transferMoney.js').then((Transfer) => {
 
-    Transfer.transferMoney(usernames[Login.getAccountID(usernames, AppUI.inputTransferTo.value)], usernames[currentAccountID], AppUI.inputTransferAmount.value)
+    Transfer.transferMoney(Login.getAccountID(usernames, AppUI.inputTransferTo.value), currentAccountID, AppUI.inputTransferAmount.value)
     AppUI.labelWelcome.innerHTML = 'MONEY MOVED';
     genMovementDisplay ('update', accounts, currentAccountID);
     AppUI.inputTransferAmount.value = '';
     AppUI.inputTransferTo.value = '';
   })
 
+})
+
+/************ LOAN REQUEST *************/
+AppUI.btnLoan.addEventListener('click', e => {
+  e.preventDefault();
+
+  import('./loanRequest.js').then((Loan) => {
+    if(Loan.loanRequest(currentAccountID, AppUI.inputLoanAmount.value)) {
+      AppUI.labelWelcome.innerHTML = 'Loan Approved';
+      genMovementDisplay('update', accounts, currentAccountID);
+    } else {
+      AppUI.labelWelcome.innerHTML = 'Loan Denied. No deposit greater than 10% of loan amount requested.'
+    }
+  })
 })

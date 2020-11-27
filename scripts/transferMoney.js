@@ -15,9 +15,9 @@ variables:
 import accounts from './accounts.js';
 
 
-function transferMoney (moneyTo, moneyFrom, amount) {
-  let movedTo = moveMoney('add', moneyTo, amount);
-  let movedFrom = moveMoney('subtract', moneyFrom, amount);
+function transferMoney (accountToID, accountFromID, amount) {
+  let movedTo = moveMoney('add', accountToID, amount);
+  let movedFrom = moveMoney('subtract', accountFromID, amount);
 
   if (movedFrom && movedTo) {
     return true;
@@ -25,9 +25,9 @@ function transferMoney (moneyTo, moneyFrom, amount) {
   return false;
 }
 
-function moveMoney (type, accountToFrom, amount) {
+function moveMoney (type, accountID, amount) {
 
-  let account = accounts[accountToFrom.accountID];
+  let account = accounts[accountID];
 
   if (type === 'add') {
     account.movements.push({amount: parseInt(amount), date: Date.now()});
@@ -41,4 +41,4 @@ function moveMoney (type, accountToFrom, amount) {
 
 }
 
-export { transferMoney }
+export { transferMoney, moveMoney as default }
