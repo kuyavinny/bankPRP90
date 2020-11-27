@@ -1,7 +1,3 @@
-function displayBalance (classEL, arr) {
-  classEL.innerHTML = calculateBalance(arr);
-}
-
 function calculateBalance (arr) {
   let amounts = [];
 
