@@ -39,8 +39,8 @@ AppUI.btnLogin.addEventListener('click', e => {
       AppUI.containerApp.style.display = 'grid';
       // currentAccount = accounts[loggedIn.accountID]; refactored
       currentAccountID = loggedIn.accountID;
-
       genMovementDisplay('initial', accounts, currentAccountID);
+      AppUI.labelWelcome.innerHTML = `<h1>Welcome, ${accounts[currentAccountID].owner.split(' ')[0]}!</h1>`;
     }
 })
 
