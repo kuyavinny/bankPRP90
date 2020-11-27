@@ -42,6 +42,8 @@ AppUI.btnLogin.addEventListener('click', e => {
       genMovementDisplay('initial', accounts, currentAccountID);
       AppUI.labelWelcome.innerHTML = `<h1>Welcome, ${accounts[currentAccountID].owner.split(' ')[0]}!</h1>`;
     }
+    AppUI.inputLoginUsername.value = '';
+    AppUI.inputLoginPin.value = '';
 })
 
 
@@ -55,6 +57,8 @@ AppUI.btnTransfer.addEventListener('click', e => {
     Transfer.transferMoney(usernames[Login.getAccountID(usernames, AppUI.inputTransferTo.value)], usernames[currentAccountID], AppUI.inputTransferAmount.value)
     AppUI.labelWelcome.innerHTML = 'MONEY MOVED';
     genMovementDisplay ('update', accounts, currentAccountID);
+    AppUI.inputTransferAmount.value = '';
+    AppUI.inputTransferTo.value = '';
   })
 
 })
