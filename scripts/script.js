@@ -75,4 +75,5 @@ AppUI.btnLoan.addEventListener('click', e => {
       AppUI.labelWelcome.innerHTML = 'Loan Denied. No deposit greater than 10% of loan amount requested.'
     }
   })
+  AppUI.inputLoanAmount.value = '';
 })
