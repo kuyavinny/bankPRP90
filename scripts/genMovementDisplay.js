@@ -1,17 +1,17 @@
-// calculate and display balance
 import * as AppUI from './pageElements.js';
+import accounts from './accounts.js';
 
 function genMovementDisplay (type, accounts, accountID) {
 
   if (type === 'update') {
     AppUI.movementsBlock.innerHTML = '';
-    displayMovement(accounts, accountID);
+    displayMovement(accountID);
   } else {
-    displayMovement(accounts, accountID);
+    displayMovement(accountID);
   }
 }
 
-function displayMovement (accounts, accountID) {
+function displayMovement (accountID) {
   import('./calculateBalance.js').then((Balance) => {
 
       AppUI.labelBalance.innerHTML = Balance.calculateBalance(accounts[accountID].movements) + '€';
