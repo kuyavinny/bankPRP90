@@ -1,9 +1,11 @@
-function generateUsernamesAndPins (arr) {
+import accounts from './accounts.js';
+
+function generateUsernamesAndPins () {
   let usernames = [];
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < accounts.length; i++) {
 
-    let account = arr[i];
+    let account = accounts[i];
     let username = '';
     let pin = '';
 
@@ -19,9 +21,12 @@ function generateUsernamesAndPins (arr) {
   return usernames;
 }
 
-function checkLogin (accounts, name, pin) {
-  for (let i = 0, len = accounts.length; i < len; i++) {
-    let account = accounts[i];
+function checkLogin (name, pin) {
+
+  let usernames = generateUsernamesAndPins();
+
+  for (let i = 0, len = usernames.length; i < len; i++) {
+    let account = usernames[i];
 
     if (account.username === name && account.pin === pin) {
       return account;
@@ -30,7 +35,9 @@ function checkLogin (accounts, name, pin) {
   return null;
 }
 
-function getAccountID (usernames, username) {
+function getAccountID (username) {
+  let usernames = generateUsernamesAndPins();
+
   for (let i = 0, len = usernames.length; i < len; i++) {
     if (usernames[i].username === username) {
       return usernames[i].accountID;
@@ -39,4 +46,4 @@ function getAccountID (usernames, username) {
   return null;
 }
 
-export { generateUsernamesAndPins, checkLogin, getAccountID };
+export { checkLogin, getAccountID };

@@ -31,9 +31,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 AppUI.btnLogin.addEventListener('click', e => {
   e.preventDefault();
 
-    usernames = Login.generateUsernamesAndPins(accounts);
-
-    let loggedIn = Login.checkLogin(usernames, AppUI.inputLoginUsername.value, AppUI.inputLoginPin.value)
+    let loggedIn = Login.checkLogin(AppUI.inputLoginUsername.value, AppUI.inputLoginPin.value)
 
     if (loggedIn) {
       AppUI.containerApp.style.display = 'grid';
@@ -53,9 +51,7 @@ AppUI.btnTransfer.addEventListener('click', e => {
 
 
   import('./transferMoney.js').then((Transfer) => {
-
-
-    Transfer.transferMoney(Login.getAccountID(usernames, AppUI.inputTransferTo.value), currentAccountID, AppUI.inputTransferAmount.value)
+    Transfer.transferMoney(Login.getAccountID(AppUI.inputTransferTo.value), currentAccountID, AppUI.inputTransferAmount.value)
     AppUI.labelWelcome.innerHTML = 'MONEY MOVED';
     genMovementDisplay ('update', accounts, currentAccountID);
     AppUI.inputTransferAmount.value = '';
@@ -78,6 +74,16 @@ AppUI.btnLoan.addEventListener('click', e => {
     } else {
       AppUI.labelWelcome.innerHTML = 'Loan Denied. No deposit greater than 10% of loan amount requested.'
       AppUI.inputLoanAmount.value = '';
+    }
+  })
+})
+
+AppUI.btnClose.addEventListener('click', e => {
+  e.preventDefault();
+
+  import('./closeAccount.js').then((Close) => {
+    if(Close.closeAccount(currentAccountID, AppUI.inputCloseUsername.value, AppUI.inputClosePin.value)){
+      AppUI.labelWelcome.innerHTML = '<h1> Account Closed </h1>';
     }
   })
 })
