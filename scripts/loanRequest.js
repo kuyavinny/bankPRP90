@@ -2,6 +2,7 @@ import accounts from './accounts.js';
 import moveMoney from './transferMoney.js';
 
 function loanRequest (accountID, amount) {
+  debugger
   let movements = accounts[accountID].movements;
   let hasDep10pct = false;
 
