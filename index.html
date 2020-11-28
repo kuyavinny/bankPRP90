@@ -4,21 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+    <link rel="shortcut icon" type="image/png" href="img/icon.png" />
 
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Bankist</title>
   </head>
   <body>
     <!-- TOP NAVIGATION -->
     <nav>
       <p class="welcome">Log in to get started</p>
-      <img src="logo.png" alt="Logo" class="logo" />
+      <img src="img/logo.png" alt="Logo" class="logo" />
       <form class="login">
         <input
           type="text"
@@ -53,14 +53,14 @@
         <div class="movements__row">
           <div class="movements__type movements__type--deposit">2 deposit</div>
           <div class="movements__date">3 days ago</div>
-          <div class="movements__value">4 000€</div>
+          <div class="movements__value movements__value--deposit">4 000€</div>
         </div>
         <div class="movements__row">
           <div class="movements__type movements__type--withdrawal">
             1 withdrawal
           </div>
           <div class="movements__date">24/01/2037</div>
-          <div class="movements__value">-378€</div>
+          <div class="movements__value movements__value--withdrawal">-378€</div>
         </div>
       </div>
 
@@ -123,6 +123,6 @@
       &copy; by Jonas Schmedtmann. Don't claim as your own :)
     </footer> -->
 
-    <script src="script.js"></script>
+    <script type="module" src="scripts/script.js"></script>
   </body>
 </html>
